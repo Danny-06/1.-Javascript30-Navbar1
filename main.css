@@ -24,9 +24,15 @@ img {
   -webkit-user-drag: none;
 }
 
+:focus-visible {
+  outline: solid 0.2em #2968a0;
+  outline-offset: 0.2em;
+}
 
 
 
+
+/* Utility Colors */
 :root {
   --app-bg-color: #f3ede5;
   --app-text-color: #807f7e;
@@ -70,10 +76,11 @@ img {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-
-  overflow: hidden;
 }
 
+.navbar-block a {
+  user-select: none;
+}
 
 .navbar-block > .logowrapper {
   flex-grow: 1;
@@ -119,14 +126,17 @@ img {
   flex-shrink: 0;
 }
 
-.navbar-block > .list > .-products {
-  cursor: pointer;
-}
-
 .navbar-block > .list > .-sign-in {
   margin-left: auto;
 }
 
+
+
+
+.wrapper-img > img {
+  width: 100%;
+  height: 100%;
+}
 
 
 .try-for-free-btn {
@@ -145,12 +155,102 @@ img {
 }
 
 
+.navbar-block > .list > .products {
+  position: relative;
+  cursor: pointer;
+}
+
+.navbar-block > .list > .products > .products-popup {
+  width: 27em;
+
+  position: absolute;
+  top: 3rem;
+  left: 0;
+}
+
+.navbar-block > .list > .products:hover > .products-popup {
+  visibility: visible;
+  opacity: 1;
+
+  transition: opacity 0.3s, visibility 0s;
+  transition-delay: 0s;
+}
+
+.products-popup {
+  visibility: hidden;
+  opacity: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  padding: 2rem;
+
+  border-radius: 1em;
+  background-color: #fff;
+
+  box-shadow: 0 0 1em 0 #0004;
+
+  font-size: 0.8rem;
+
+  transition: opacity 0.3s, visibility 0.3s;
+  transition-delay: 0.3s;
+}
+
+.products-popup.-show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.products-popup > .item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.products-popup > .item > .wrapper-img {
+  flex-shrink: 0;
+  width: 24px;
+}
+
+.products-popup > .item > .info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.products-popup > .item > .info > .title {
+  color: #112c44;
+  font-weight: bold;
+}
+
+.products-popup > .item {
+  padding: 0.5rem;
+
+  border-radius: 1em;
+
+  transition: background-color 0.3s;
+
+  cursor: pointer;
+}
+
+.products-popup > .item:hover {
+  background-color: #88aed044;
+}
+
+.products-popup > .item:active {
+  background-color: #1d7acd44;
+  transition: background-color 0s;
+}
+
+
 
 .main {
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 2fr 1fr;
-  gap: 1rem;
+  gap: 4rem;
 
   padding-bottom: 3rem;
 }
@@ -249,9 +349,4 @@ img {
   .footer-block > .companieslist > .wrapper-img {
     flex-basis: 5rem;
   }
-}
-
-.footer-block > .companieslist > .wrapper-img > img {
-  width: 100%;
-  height: 100%;
 }
