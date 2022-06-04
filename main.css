@@ -56,6 +56,13 @@ img {
   }
 }
 
+@media (max-width: 47rem) {
+  #app-content {
+    justify-content: flex-start;
+  }
+}
+
+
 
 .navbar-block {
   width: 100%;
@@ -126,7 +133,7 @@ img {
   display: block;
   width: max-content;
 
-  padding: 1rem 1.5rem;
+  padding: 1em 1.5em;
 
   border-radius: 0.2em;
   background-color: var(--try-for-free-btn-bg-color);
@@ -168,6 +175,12 @@ img {
   font-size: 3rem;
 }
 
+@media (max-width: 47rem) {
+  .content-section > .heading {
+    font-size: 2rem;
+  }
+}
+
 .content-section > .heading > .secondary {
   color: var(--secondary-heading-color);
 }
@@ -179,8 +192,6 @@ img {
 .content-section > .mobileinfo > .logoicons {
   display: inline-flex;
   gap: 1rem;
-
-  margin-left: 1rem;
 
   vertical-align: middle;
 }
