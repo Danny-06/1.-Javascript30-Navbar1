@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <link rel="icon" href="data:image/x-icon," type="image/x-icon">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <meta name="theme-color" content="#444">
+        <meta name="color-scheme" content="dark">
+        <link rel="stylesheet" href="default.css">
+        <link rel="stylesheet" href="main.css">
+        <!-- <link rel="stylesheet" href="utility-classes.css"> -->
+        <script type="module" src="main.js"></script>
+        <script>
+        // Always remove text selection when the user clicks on any part of the document
+        // This is to avoid those annoying times when you want to remove the selection but you can't
+        window.addEventListener('mousedown', event => {
+          if (event.button === 0) window.getSelection().empty()
+        })
+        </script>
+    </head>
+    <body>
+        <div id="app">
+            <div id="app-content">
+                <nav class="navbar-block">
+                    <div class="logowrapper">
+                        <a href="#" class="logo">
+                            <img src="assets/icons/Logo.svg" alt="Logo">
+                        </a>
+                    </div>
+                    <div class="list" role="list">
+                        <div class="navitem -products" role="listitem">Products</div>
+                        <a href="#" role="listitem">Challenge</a>
+                        <a href="#" role="listitem">Resources</a>
+                        <a href="#" role="listitem">Other Links</a>
+                        <a href="#" class="-sign-in" role="listitem">Sign in</a>
+                        <a href="#" class="try-for-free-btn" role="listitem">Try for free</a>
+                    </div>
+                    <div class="menu">
+                        <img src="assets/icons/Menu.svg" alt="Menu">
+                    </div>
+                </nav>
+                <main class="main">
+                    <div class="content-section">
+                        <h1 class="heading">Ondeck is your remote <span class="secondary">conference calling tool</span></h1>
+                        <p>
+                            Ondeck is a service that allows you to create beautiful,
+                            online and encrypted video calls for you and your remote team.
+                        </p>
+                        <a href="#" class="try-for-free-btn" role="listitem">
+                            Try for free
+                        </a>
+                        <span class="mobileinfo">
+                            5.0 Rating based on reviews from:
+                            <div class="logoicons">
+                                <img src="assets/icons/Capterra Icon.svg" alt="Capterra Logo">
+                                <img src="assets/icons/AlternativeTo Icon.svg" alt="Capterra Logo">
+                                <img src="assets/icons/Shopify Icon.svg" alt="Capterra Logo">
+                            </div>
+                        </span>
+                    </div>
+                    <div class="hero-section">
+                        <img src="assets/images/Hero Image.png" alt="Hero Image">
+                    </div>
+                </main>
+                <footer class="footer-block">
+                    <div class="info">Trusted by 3+ million people at companies like</div>
+                    <div class="companieslist" role="list">
+                        <a href="#" class="wrapper-img" role="listitem">
+                            <img src="assets/icons/Netflix Logo.svg" alt="brand logo">
+                        </a>
+                        <a href="#" class="wrapper-img" role="listitem">
+                            <img src="assets/icons/Shopify Logo.svg" alt="brand logo">
+                        </a>
+                        <a href="#" class="wrapper-img" role="listitem">
+                            <img src="assets/icons/Spotify Logo.svg" alt="brand logo">
+                        </a>
+                        <a href="#" class="wrapper-img" role="listitem">
+                            <img src="assets/icons/Walmart Logo.svg" alt="brand logo">
+                        </a>
+                    </div>
+                </footer>
+            </div>
+        </div>
+    </body>
+</html>
