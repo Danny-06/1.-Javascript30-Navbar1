@@ -1,54 +1,74 @@
-const { hamburguerMenuBtn, productsBtnPc, productsPopupPc } = getAllElementsMapWithDataJSAttribute()
+import { getAllElementsMapWithId, getAllElementsMapWithDataJSAttribute } from './utilities-module.js'
+
+const { appContent } = getAllElementsMapWithId()
+
+const {
+  productsBtnPc,
+  productsPopupPc,
+
+  productsBtnMobile,
+  productsPopupMobile,
+  closeProductPopupBtnMobile,
+
+  hamburguerMenu,
+  openHamburguerMenuBtn,
+  closeHamburguerMenuBtn
+} = getAllElementsMapWithDataJSAttribute()
 
 
-hamburguerMenuBtn.addEventListener('click', event => {
 
+productsBtnPc.addEventListener('click', handlePopupPC)
+productsPopupPc.addEventListener('click', event => event.stopPropagation())
+
+productsBtnMobile.addEventListener('click', handlePopupMobile)
+productsPopupMobile.addEventListener('click', event => event.stopPropagation())
+
+
+openHamburguerMenuBtn.addEventListener('click', event => {
+  hamburguerMenu.classList.add('-show')
+  appContent.hidden = true
+
+  closeHamburguerMenuBtn.focus()
+})
+closeHamburguerMenuBtn.addEventListener('click', event => {
+  hamburguerMenu.classList.remove('-show')
+  appContent.hidden = false
 })
 
-productsBtnPc.addEventListener('click', event => {
-  // Avoid the popup to dissapear if clicked directly on it except on its content
-  if (event.target === productsPopupPc) return event.stopPropagation()
-
-  if (event.target !== productsBtnPc) return
-  if (productsPopupPc.classList.contains('-show')) return
-
-  productsPopupPc.classList.add('-show')
-  event.stopPropagation()
-  window.addEventListener('click', event => productsPopupPc.classList.remove('-show'), {once: true})
-})
+closeProductPopupBtnMobile.addEventListener('click', event => productsPopupMobile.classList.remove('-show'))
 
 
+function handlePopupPC(event) {
+  if (!productsPopupPc.classList.toggle('-show')) {
+    return
+  }
 
+  let avoidFirstClip = true
+  const abortController = new AbortController()
 
+  window.addEventListener('click', event => {
+    if (avoidFirstClip) return avoidFirstClip = false
+    if (event.target === productsBtnPc) return
 
+    productsPopupPc.classList.remove('-show')
 
-/**
- * @param {Document | Element} node
- * @returns {{[key: string]: Element}}
- */
-function getAllElementsMapWithDataJSAttribute(node = document) {
-  const hyphenToLowerCase = string => string.split('-').map((str, index) => index !== 0 ? str[0].toUpperCase() + str.slice(1) : str).join('')
-
-  if (node == null) throw new TypeError(`param 1 cannot be null or undefined`)
-  if (!(node instanceof Element || node instanceof Document)) throw new TypeError(`param 1 must be an instance of Element or Document`)
-
-  const elements = node.querySelectorAll('*')
-
-  const map = {}
-
-  elements.forEach(element => {
-    const dataJSPrefix = 'data-js-'
-    const attribute = [...element.attributes].filter(attribute => attribute.name.startsWith(dataJSPrefix))[0]
-
-    if (attribute == null) return
-
-    const name  = hyphenToLowerCase(attribute.name.slice(dataJSPrefix.length))
-
-    if (name in map) throw new DOMException(`data attribute js must be unique`)
-
-    map[name] = element
-  })
-
-  return map
+    abortController.abort()
+  }, {signal: abortController.signal})
 }
 
+
+function handlePopupMobile(event) {
+  productsPopupMobile.classList.add('-show')
+
+  let avoidFirstClip = true
+  const abortController = new AbortController()
+
+  window.addEventListener('click', event => {
+    if (avoidFirstClip) return avoidFirstClip = false
+    if (event.target === productsBtnMobile) return
+
+    productsPopupMobile.classList.remove('-show')
+
+    abortController.abort()
+  }, {signal: abortController.signal})
+}

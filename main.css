@@ -96,13 +96,15 @@ img {
   height: 100%;
 }
 
-.navbar-block > .menu {
+.navbar-block > .menubtn {
   display: none;
+  margin-right: 1rem;
+
   cursor: pointer;
 }
 
 @media (max-width: 47rem) {
-  .navbar-block > .menu {
+  .navbar-block > .menubtn {
     display: block;
   }
 }
@@ -170,20 +172,7 @@ img {
   transform: translateX(-20%);
 }
 
-/* Show products-popup on hover */
-/*
-.navbar-block > .list > .products:hover > .products-popup {
-  visibility: visible;
-  opacity: 1;
 
-  transition: opacity 0.3s, visibility 0s;
-  transition-delay: 0s;
-}
-
-.products-popup {
-  transition-delay: 0.3s;
-}
-*/
 
 .products-popup {
   visibility: hidden;
@@ -197,6 +186,7 @@ img {
 
   border-radius: 1em;
   background-color: #fff;
+  color: var(--app-text-color);
 
   box-shadow: 0 0 1em 0 #0004;
 
@@ -210,6 +200,19 @@ img {
 .products-popup.-show {
   visibility: visible;
   opacity: 1;
+}
+
+.products-popup > .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 0.5rem;
+}
+
+.products-popup > .top > .closebtn {
+  font-size: 1.3rem;
+  cursor: pointer;
 }
 
 .products-popup > .tail {
@@ -263,7 +266,9 @@ img {
   cursor: pointer;
 }
 
-.products-popup > .item:hover {
+.products-popup > .item:hover,
+.products-popup > .item:active,
+.products-popup > .item:focus-visible {
   background-color: #88aed044;
 }
 
@@ -272,6 +277,107 @@ img {
   transition: background-color 0s;
 }
 
+
+
+#app > .hamburguer-menu {
+  visibility: hidden;
+
+  width: 100%;
+  height: 100%;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+
+  transform: translateY(-100%);
+
+  /* Add transition for `visibility` to hide the hamburguer-menu after the `translateY(-100%)` has been applied */
+  transition: transform 0.3s, visibility 0.3s;
+}
+
+#app > .hamburguer-menu.-show {
+  visibility: visible;
+  transform: translateY(0);
+
+  /* Remove transition for `visibility` to show the hamburguer-menu directly without waiting for the `translateY(0)` to complete */
+  transition: transform 0.3s, visibility 0s;
+}
+
+
+.hamburguer-menu {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+
+  padding: 1rem;
+  padding-top: calc(1rem + 72px / 2 - 12px);
+
+  background-color: #28a867;
+  color: #fff;
+}
+
+.hamburguer-menu > * {
+  user-select: none;
+}
+
+
+.hamburguer-menu > .close {
+  align-self: flex-end;
+
+  width: 24px;
+  height: 24px;
+
+  margin-right: 1rem;
+
+  --line-size: 3px;
+  --line-offset: 50%;
+  --line-color: #000;
+  --line:
+  transparent 0,
+  transparent calc(var(--line-offset) - var(--line-size) / 2),
+
+  var(--line-color) calc(var(--line-offset) - var(--line-size) / 2),
+  var(--line-color) calc(var(--line-offset) + var(--line-size) / 2),
+
+  transparent calc(var(--line-offset) + var(--line-size) / 2),
+  transparent 100%
+  ;
+  --line-1:  45deg,  var(--line);
+  --line-2: -45deg, var(--line);
+
+  background-repeat: no-repeat;
+  background-image:
+  linear-gradient(var(--line-1)),
+  linear-gradient(var(--line-2))
+  ;
+
+  background-size: 70% 70%;
+  background-position: center;
+
+  cursor: pointer;
+}
+
+.hamburguer-menu > .products {
+  cursor: pointer;
+}
+
+.hamburguer-menu > .products-popup {
+  position: absolute;
+  top: 1rem;
+  left: 0;
+  right: 0;
+  margin-inline: auto;
+
+  width: 90%;
+}
+
+.hamburguer-menu > .products-popup > .tail {
+  display: none;
+}
 
 
 .main {
