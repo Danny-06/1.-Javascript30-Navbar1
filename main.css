@@ -166,8 +166,12 @@ img {
   position: absolute;
   top: 3rem;
   left: 0;
+
+  transform: translateX(-20%);
 }
 
+/* Show products-popup on hover */
+/*
 .navbar-block > .list > .products:hover > .products-popup {
   visibility: visible;
   opacity: 1;
@@ -175,6 +179,11 @@ img {
   transition: opacity 0.3s, visibility 0s;
   transition-delay: 0s;
 }
+
+.products-popup {
+  transition-delay: 0.3s;
+}
+*/
 
 .products-popup {
   visibility: hidden;
@@ -194,13 +203,32 @@ img {
   font-size: 0.8rem;
 
   transition: opacity 0.3s, visibility 0.3s;
-  transition-delay: 0.3s;
+
+  cursor: default;
 }
 
 .products-popup.-show {
   visibility: visible;
   opacity: 1;
 }
+
+.products-popup > .tail {
+  --tail-size: 10px;
+  --tail-color: #fff;
+
+  position: absolute;
+  top: 0;
+  left: 26%;
+
+  transform: translateY(-100%);
+
+  width: 0;
+  height: 0;
+
+  border: solid var(--tail-size) transparent;
+  border-bottom-color: var(--tail-color);
+}
+
 
 .products-popup > .item {
   display: flex;

@@ -1,14 +1,21 @@
-const { hamburguerMenuBtn, products } = getAllElementsMapWithDataJSAttribute()
+const { hamburguerMenuBtn, productsBtnPc, productsPopupPc } = getAllElementsMapWithDataJSAttribute()
 
 
 hamburguerMenuBtn.addEventListener('click', event => {
 
 })
 
-products.addEventListener('click', event => {
+productsBtnPc.addEventListener('click', event => {
+  // Avoid the popup to dissapear if clicked directly on it except on its content
+  if (event.target === productsPopupPc) return event.stopPropagation()
 
+  if (event.target !== productsBtnPc) return
+  if (productsPopupPc.classList.contains('-show')) return
+
+  productsPopupPc.classList.add('-show')
+  event.stopPropagation()
+  window.addEventListener('click', event => productsPopupPc.classList.remove('-show'), {once: true})
 })
-
 
 
 
