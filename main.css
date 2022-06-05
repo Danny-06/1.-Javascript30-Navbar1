@@ -193,13 +193,20 @@ img {
   font-size: 0.8rem;
 
   transition: opacity 0.3s, visibility 0.3s;
+  transition-delay: 0.1s;
 
   cursor: default;
+}
+
+.products-popup > * {
+  user-select: none;
 }
 
 .products-popup.-show {
   visibility: visible;
   opacity: 1;
+
+  transition-delay: 0s;
 }
 
 .products-popup > .top {
