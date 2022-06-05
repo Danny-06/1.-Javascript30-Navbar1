@@ -325,9 +325,12 @@ img {
 
   background-color: #28a867;
   color: #fff;
+
+  overflow: auto;
 }
 
 .hamburguer-menu > * {
+  flex-shrink: 0;
   user-select: none;
 }
 
