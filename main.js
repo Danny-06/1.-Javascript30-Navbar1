@@ -27,12 +27,21 @@ productsBtnPc.addEventListener('keyup', event => {
 productsPopupPc.addEventListener('click', event => event.stopPropagation())
 
 productsPopupPc.querySelectorAll('.item').forEach(item => {
-  item.addEventListener('click', event => productsPopupPc.classList.remove('-show'))
-  item.addEventListener('keyup', event => event.stopPropagation())
+  item.addEventListener('click', event => {
+    productsPopupPc.classList.remove('-show')
+    document.documentElement.click()
+  })
+  item.addEventListener('keyup', event => {
+    if (event.code !== 'Space' && event.code !== 'Enter') return
+
+    event.stopPropagation()
+    document.documentElement.click()
+  })
 })
 
 navList.addEventListener('focusin', event => {
   if (event.composedPath().includes(productsPopupPc)) return
+
   productsPopupPc.classList.remove('-show')
 })
 
@@ -46,20 +55,34 @@ productsBtnMobile.addEventListener('keyup', event => {
 productsPopupMobile.addEventListener('click', event => event.stopPropagation())
 
 productsPopupMobile.querySelectorAll('.item').forEach(item => {
-  item.addEventListener('click', event => productsPopupMobile.classList.remove('-show'))
-  item.addEventListener('keyup', event => event.stopPropagation())
+  item.addEventListener('click', event => {
+    productsPopupMobile.classList.remove('-show')
+    document.documentElement.click()
+  })
+  item.addEventListener('keyup', event => {
+    if (event.code !== 'Space' && event.code !== 'Enter') return
+
+    event.stopPropagation()
+    document.documentElement.click()
+  })
 })
 
 hamburguerMenu.addEventListener('focusin', event => {
   if (event.composedPath().includes(productsPopupMobile)) return
+
   productsPopupPc.classList.remove('-show')
+})
+
+closeProductPopupBtnMobile.addEventListener('click', event => {
+  productsPopupMobile.classList.remove('-show')
+  document.documentElement.click()
 })
 
 
 // Hamburguer Menu
 openHamburguerMenuBtn.addEventListener('click', event => {
   hamburguerMenu.classList.add('-show')
-  
+
   hamburguerMenu.addEventListener('transitionend', event => appContent.hidden = true, {once: true})
 
   closeHamburguerMenuBtn.focus()
@@ -70,7 +93,6 @@ closeHamburguerMenuBtn.addEventListener('click', event => {
   appContent.hidden = false
 })
 
-closeProductPopupBtnMobile.addEventListener('click', event => productsPopupMobile.classList.remove('-show'))
 
 
 
@@ -83,9 +105,8 @@ function handlePopupPCClick(event) {
   let avoidFirstClip = true
   const abortController = new AbortController()
 
-  window.addEventListener('click', event => {
-    if (avoidFirstClip) return avoidFirstClip = false
-    if (event.target === productsBtnPc) return
+  window.addEventListener('click', evt => {
+    if (event.type === 'click' && avoidFirstClip) return avoidFirstClip = false
 
     productsPopupPc.classList.remove('-show')
 
@@ -104,9 +125,8 @@ function handlePopupMobileClick(event) {
   let avoidFirstClip = true
   const abortController = new AbortController()
 
-  window.addEventListener('click', event => {
-    if (avoidFirstClip) return avoidFirstClip = false
-    if (event.target === productsBtnMobile) return
+  window.addEventListener('click', evt => {
+    if (event.type === 'click' && avoidFirstClip) return avoidFirstClip = false
 
     productsPopupMobile.classList.remove('-show')
 
