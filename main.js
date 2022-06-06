@@ -41,6 +41,7 @@ productsPopupPc.querySelectorAll('.item').forEach(item => {
 
 navList.addEventListener('focusin', event => {
   if (event.composedPath().includes(productsPopupPc)) return
+  if (event.target === productsBtnPc) return
 
   productsPopupPc.classList.remove('-show')
 })
@@ -69,6 +70,7 @@ productsPopupMobile.querySelectorAll('.item').forEach(item => {
 
 hamburguerMenu.addEventListener('focusin', event => {
   if (event.composedPath().includes(productsPopupMobile)) return
+  if (event.target === productsBtnMobile) return
 
   productsPopupPc.classList.remove('-show')
 })
@@ -102,11 +104,16 @@ function handlePopupPCClick(event) {
     return
   }
 
+  productsPopupPc.addEventListener('transitionend', event => {
+    productsPopupPc.querySelector('.item').focus()
+  }, {once: true})
+
   let avoidFirstClip = true
   const abortController = new AbortController()
 
   window.addEventListener('click', evt => {
     if (event.type === 'click' && avoidFirstClip) return avoidFirstClip = false
+    if (evt.target === productsPopupPc) return
 
     productsPopupPc.classList.remove('-show')
 
