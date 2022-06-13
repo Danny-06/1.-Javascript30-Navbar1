@@ -69,8 +69,8 @@ img {
 }
 
 @media
-(min-aspect-ratio: 1366 / 657) and (max-aspect-ratio: 1366 / 615),
-(min-aspect-ratio: 1360 / 657) and (max-aspect-ratio: 1360 / 615),
+(max-width: 86.25em) and (min-aspect-ratio: 1366 / 658) and (max-aspect-ratio: 1366 / 615),
+(max-width: 86.25em) and (min-aspect-ratio: 1360 / 658) and (max-aspect-ratio: 1360 / 615),
 (aspect-ratio: 1024 / 600) {
   #app-content {
     grid-template-rows: 72px 1fr 100px;
