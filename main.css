@@ -71,7 +71,7 @@ img {
 @media
 (max-width: 86.25em) and (min-aspect-ratio: 1366 / 658) and (max-aspect-ratio: 1366 / 615),
 (max-width: 86.25em) and (min-aspect-ratio: 1360 / 658) and (max-aspect-ratio: 1360 / 615),
-(aspect-ratio: 1024 / 600) {
+(max-width: 64em)    and (aspect-ratio: 1024 / 600) {
   #app-content {
     grid-template-rows: 72px 1fr 100px;
     padding-bottom: 1rem;
