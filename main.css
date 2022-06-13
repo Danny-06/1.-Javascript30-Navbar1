@@ -68,7 +68,7 @@ img {
   }
 }
 
-@media (aspect-ratio: 1366 / 625), (aspect-ratio: 1024 / 600) {
+@media (aspect-ratio: 1366 / 625), (aspect-ratio: 1360 / 625), (aspect-ratio: 1024 / 600) {
   #app-content {
     grid-template-rows: 72px 1fr 100px;
     padding-bottom: 1rem;
